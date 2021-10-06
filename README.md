@@ -2,7 +2,8 @@ Ansible Operator for SSH management of external systems
 =======================================================
 
 This is an example of an Ansible Operator for Kubernetes/OpenShift to manage an external NGINX instance and add
-custom routing configs to it.
+custom routing configs to it. It could be seen as a template for any Ansible Operator that needs to do classic
+IT-automation work via SSH.
 
 Quick&Dirty Howto, how to get to the state reflected in this repository:
 
