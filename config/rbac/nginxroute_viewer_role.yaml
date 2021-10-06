@@ -1,0 +1,20 @@
+# permissions for end users to view nginxroutes.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: nginxroute-viewer-role
+rules:
+- apiGroups:
+  - nginx.example.com
+  resources:
+  - nginxroutes
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - nginx.example.com
+  resources:
+  - nginxroutes/status
+  verbs:
+  - get

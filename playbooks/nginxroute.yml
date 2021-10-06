@@ -1,0 +1,10 @@
+---
+- hosts: all
+  gather_facts: no
+  collections:
+    - community.kubernetes
+    - operator_sdk.util
+    - nginxinc.nginx_core
+  tasks:
+    - import_role:
+        name: "nginxroute"

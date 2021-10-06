@@ -1,0 +1,22 @@
+---
+# tasks file for NginxRoute
+- include_role:
+    name: nginxinc.nginx_core.nginx_config
+  vars:
+    nginx_config_http_template_enable: true
+    nginx_config_http_template:
+      route_config:
+        conf_file_name: "{{ ansible_operator_meta.name }}.conf"
+        servers:
+          server1:
+            server_name: nginx-engine
+            listen:
+              http:
+                port: 80
+            reverse_proxy:
+              locations:
+                backend:
+                  location: "/{{ path }}"
+                  proxy_pass: "{{ backend_url }}"
+                  rewrites:
+                    - "/{{ path }} / break"

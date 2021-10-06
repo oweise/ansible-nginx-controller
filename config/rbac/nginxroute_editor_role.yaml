@@ -1,0 +1,24 @@
+# permissions for end users to edit nginxroutes.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: nginxroute-editor-role
+rules:
+- apiGroups:
+  - nginx.example.com
+  resources:
+  - nginxroutes
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - nginx.example.com
+  resources:
+  - nginxroutes/status
+  verbs:
+  - get

@@ -1,0 +1,8 @@
+---
+demo:
+  hosts:
+    nginx-engine:
+      ansible_host: 192.168.130.15
+  vars:
+    ansible_user: vagrant
+    ansible_become: true

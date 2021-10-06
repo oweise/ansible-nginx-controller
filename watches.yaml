@@ -1,0 +1,7 @@
+---
+# Use the 'create api' subcommand to add watches to this file.
+- version: v1alpha1
+  group: nginx.example.com
+  kind: NginxRoute
+  playbook: playbooks/nginxroute.yml
+#+kubebuilder:scaffold:watch
