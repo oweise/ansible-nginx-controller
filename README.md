@@ -240,11 +240,22 @@ image: default-route-openshift-image-registry.apps-crc.testing/ansible-nginx-ope
 NOTE: If you plan to follow the "what we did" instructions don't push your image yet, as the target project, 
 which is a part of that docker ref, is not yet known to OpenShift.
 
-Deploy operator
-===============
+Deploy operator and push image
+==========
 
-This will deploy all necessary Kubernetes resources for the operator. But the operator will not yet work as the
-image is still missing (which we push in the next step).
+Now we need to get everything on the cluster: Kubernetes Resources and Operator image
+
+If you follow the "what we did" path and you also use a local CodeReady Containers installation for your OpenShift: 
+There is a shell script "push-everything-to-crc.sh" in this repo. It *should* does everything necessary when your local
+oc tool is logged in on your CRC cluster and you have podman+kustomize installed. It will:
+
+- Deploy everything from folder config/default
+- Build the image locally
+- Login to CRC OpenShift registry
+- Push the image to the registry
+
+Otherwise: We are not covering the part here to get your image to your cluster as there are too many options. 
+But you can deploy the kubernetes resources the following:
 
 - Go into folder "config/default"
 - Run:
@@ -252,16 +263,6 @@ image is still missing (which we push in the next step).
 ```
 kustomize build . | kubectl apply -f -
 ```
-
-Push image
-==========
-
-If you follow the "what we did" path you can now push the image as the previous step created the OpenShift project
-"ansible-nginx-operator-system", contained in the docker ref.
-
-If you also use a local CodeReady Containers installation for your OpenShift: There is a shell script 
-"build-and-push-image-to-crc.sh" in this repo. It *should* work in most situations when your local oc tool is logged
-in on your CRC cluster.
 
 It might take some time for the Operator pod to pick up the now available image. To speed things up, delete the old 
 pod which will instantly get replaced.
